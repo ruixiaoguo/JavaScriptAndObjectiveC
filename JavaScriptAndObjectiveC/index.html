@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试IOS与JS之前的互调</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+	  * {
+	  	font-size: 50px;
+	  }
+	</style>
+  <script type="text/javascript">
+
+  var jsFunc = function() {
+    alert('Objective-C call js to show alert');
+  }
+
+  
+  var jsParamFunc = function(argument) {
+    document.getElementById('jsParamFuncSpan').innerHTML
+    = "姓名:" + argument['name'] + "年龄:"+ argument['age'] + "身高:"+ argument['height'];
+  }
+  
+  </script>
+  
+</head>
+
+<body>
+  
+<div style="margin-top: 100px">
+	<h3>基于JavaScriptCore实现js调用oc系统方法</h3>
+	<input type="button" value="js调起oc系统方法无传参" onclick="OCModel.callSystemCamera()"><br /><br />
+	<input type="button" value="js调起oc系统方法并传参给oc" onclick="OCModel.showAlertMsg('js title', 'js message')"><br /><br />
+</div>
+
+<div>
+	<input type="button" value="js调起oc系统方法并传参给oc(字典数据)" onclick="OCModel.callWithDict({'name': 'testname', 'age': 10, 'height': 170})"><br /><br />
+	<input type="button" value="JS调用Oc，然后在OC中通过调用JS方法来传值给JS" onclick="OCModel.jsCallObjcAndObjcCallJsWithDict({'name': 'testname', 'age': 10, 'height': 170})"><br /><br />
+</div>
+
+
+<div>
+	<span id="jsParamFuncSpan" style="color: red; font-size: 70px;"></span>
+</div>
+
+
+</body>
+</html>
